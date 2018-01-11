@@ -28,11 +28,11 @@ Route::get('/home/tarefas/{id}/remove', 'TarefasConstroller@remove');
 Route::get('/home/usuarios', 'UsuariosController@index');
 Route::post('/home/usuarios/new', 'UsuariosController@new');
 Route::post('/home/usuarios/{id}/edit', 'UsuariosController@edit');
-Route::get('/home/usuarios/{id}', 'UsuariosController@tarefa');
+Route::get('/home/usuarios/{id}', 'UsuariosController@usuario');
 Route::get('/home/usuarios/{id}/remove', 'UsuariosController@remove');
 
 Route::get('/home/regras', 'RegrasController@index');
 Route::post('/home/regras/new', 'RegrasController@new');
 Route::post('/home/usuarios/{id}/edit', 'RegrasController@edit');
-Route::get('/home/regras/{id}', 'RegrasController@tarefa');
+Route::get('/home/regras/{id}', 'RegrasController@regra');
 Route::get('/home/regras/{id}/remove', 'RegrasController@remove');

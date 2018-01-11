@@ -48,7 +48,7 @@ class User extends Authenticatable
       return null !== $this->regras()->whereIn('nome', $regras)->first();
     }
 
-    public function checaRegra($rega)
+    public function checaRegra($regra)
     {
       return null !== $this->regras()->where('nome', $regra)->first();
     }

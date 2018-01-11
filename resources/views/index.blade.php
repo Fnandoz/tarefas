@@ -13,7 +13,12 @@
   <ul>
     @foreach($dados as $dado)
     <li>
-      <p>{{$dado->nome}}
+      <p>
+        @if($url=='tarefas')
+        {{$dado->titulo}}
+        @else
+        {{$dado->nome}}
+        @endif
         <a href="/home/{{$url}}/{{$dado->id}}/remove">Remover</a>
         <a href="/home/{{$url}}/{{$dado->id}}">Visualizar</a></p>
     </li>

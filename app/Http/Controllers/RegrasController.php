@@ -13,7 +13,7 @@ class RegrasController extends Controller
   }
   public function index(Request $request)
   {
-    $request->user()->RegrasAutorizadas(['administrador', 'convidado']);
+    $request->user()->RegrasAutorizadas(['administrador']);
     $regras = Regras::all();
     return view('index', ['dados'=>$regras, 'url'=>'regras']);
   }
@@ -23,36 +23,38 @@ class RegrasController extends Controller
     $request->user()->RegrasAutorizadas(['administrador']);
     $titulo = $request->input('titulo');
     $descricao = $request->input('descricao');
-    $tarefa = new Tarefa;
-    $tarefa->titulo = $titulo;
-    $tarefa->descricao = $descricao;
+    $regras = new Regras;
+    $regras->titulo = $titulo;
+    $regras->descricao = $descricao;
 
-    $tarefa->save();
+    $regras->save();
     return back();
   }
 
-  public function edit($id)
+  public function edit(Request $request, $id)
   {
+    $request->user()->RegrasAutorizadas(['administrador']);
     $titulo = $request->input('titulo');
     $descricao = $request->input('descricao');
-    $tarefa = Tarefa::find($id);
-    $tarefa->titulo = $titulo;
-    $tarefa->descricao = $descricao;
+    $regras = Regras::find($id);
+    $regras->titulo = $titulo;
+    $regras->descricao = $descricao;
 
-    $tarefa->save();
+    $regras->save();
+    return back();
   }
 
   public function remove(Request $request, $id)
   {
     $request->user()->RegrasAutorizadas(['administrador']);
-    Tarefa::destroy($id);
+    Regras::destroy($id);
     return back();
   }
 
-  public function tarefa(Request $request, $id)
+  public function regra(Request $request, $id)
   {
     $request->user()->RegrasAutorizadas(['administrador', 'convidado']);
-    $tarefa = Tarefa::find($id);
-    return $tarefa;
+    $regra = Regras::find($id);
+    return $regra;
   }
 }

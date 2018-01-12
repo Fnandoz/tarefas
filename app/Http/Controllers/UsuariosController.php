@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Regras;
 
 class UsuariosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
       $regras = Regras::all();
@@ -33,6 +39,13 @@ class UsuariosController extends Controller
     public function usuario(Request $request, $id)
     {
       $user = User::find($id);
-      return $user->regras();
+      return [$user,$user->retornaRegras()];
+    }
+
+    public function remove(Request $request, $id)
+    {
+      DB::table('regras_user')->where('user_id', '=', $id)->delete();
+      $user = User::destroy($id);
+      return back();
     }
 }

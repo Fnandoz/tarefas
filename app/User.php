@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
       return null !== $this->regras()->where('nome', $regra)->first();
     }
+
+    public function retornaRegras()
+    {
+      return $this->regras()->orderBy('nome')->get();
+    }
 }

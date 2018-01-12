@@ -23,7 +23,6 @@
                     <a href="/home/tarefas">Tarefas</a>
                     @if(Auth::user()->checaRegra("administrador"))
                     <a href="/home/usuarios">Usuarios</a>
-                    <a href="/home/regras">Regras</a>
                     @endif
                 </div>
             </div>
